@@ -1,6 +1,6 @@
 # 依赖技能 · 前置检查与说明
 
-`course-ppt-html` 是一个**编排型技能**：它自己不生产视觉资产，而是把两个核心能力技能串起来，贯穿 6 阶段流程，输出「能翻页、有 IP 插画、有微动视频、能录成片」的单文件 HTML PPT。
+`course-ppt-html` 是一个**编排型技能**：它自己不生产视觉资产，而是把两个核心能力技能串起来，贯穿 5 阶段流程，输出「能翻页、有 IP 插画、有微动视频」的单文件 HTML PPT。
 
 这两个技能是**推荐路径的硬依赖**——本仓库内置了最小可用的兜底模板（`assets/template.html` / `references/ip-illustration.md`），但**官方推荐路径**依赖这两个技能以获得完整的视觉系统与一致的 IP 风格。**G0 前置检查必须确认它们已就绪。**
 
@@ -16,7 +16,7 @@
 ### guizang-ppt-skill —— 用于阶段3
 - 提供多套成熟主题（如「瑞士国际主义」「电子杂志 × 电子墨水」），含 CSS 变量、横翻页 JS、章节幕封、数据大字报、图片网格等版式与 WebGL 背景。
 - `course-ppt-html` 阶段3 生成 HTML 时，**优先调用 `guizang-ppt-skill` 产出 HTML 视觉底座**（或以其模板为基底）；本仓库 `assets/template.html` 仅作为该技能缺失时的兜底骨架。
-- 两者可共存：用 guizang 出视觉底座，再用 `course-ppt-html` 的 video 同步（`syncVideos`）、备注层（N 键）、录制脚本接管后续阶段4–6。
+- 两者可共存：用 guizang 出视觉底座，再用 `course-ppt-html` 的 video 同步（`syncVideos`）、备注层（N 键）、接管后续阶段4–5。
 
 ### ian-xiaohei-illustrations —— 用于阶段4
 - 提供 IP 角色的风格定义（线条 / 配色 / 比例）、图生图参考图锁定方式、零水印要点。

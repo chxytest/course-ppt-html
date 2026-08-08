@@ -1,11 +1,11 @@
 ---
 name: course-ppt-html
-description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完整生产线，把"能横向翻页、有 IP 插画、有微动视频、能录成成片"的网页 PPT 拆成 6 个可控阶段（资料确认 → 框架梳理 → 文档版方案 → 单 HTML 生成 → IP 配图生成 → 视频生成嵌入 → 整本录制），每阶段带用户确认门（G0–G6）与资料准备清单。本技能为编排器，推荐路径依赖 guizang-ppt-skill（阶段3 视觉系统）与 ian-xiaohei-illustrations（阶段4 IP 配图）两个核心技能，G0 前置检查确认其就绪（缺失则自动安装或走内置兜底）。当用户说「帮我做一份 HTML 版课程 PPT / 分享 PPT / 演讲 slides，主题：XXX」「把这篇内容做成网页 PPT」「生成带插画动画的 H5 课件」时触发。核心铁律：生图/视频必落本地 assets/ 且文件名对齐引用；批量重生成先删旧图；带 video 的页面录制走「截图+合成」法。
+description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完整生产线，把"能横向翻页、有 IP 插画、有微动视频"的网页 PPT 拆成 5 个可控阶段（资料确认 → 框架梳理 → 文档版方案 → 单 HTML 生成 → IP 配图生成 → 视频生成嵌入），每阶段带用户确认门（G0–G5）与资料准备清单。本技能为编排器，推荐路径依赖 guizang-ppt-skill（阶段3 视觉系统）与 ian-xiaohei-illustrations（阶段4 IP 配图）两个核心技能，G0 前置检查确认其就绪（缺失则自动安装或走内置兜底）。当用户说「帮我做一份 HTML 版课程 PPT / 分享 PPT / 演讲 slides，主题：XXX」「把这篇内容做成网页 PPT」「生成带插画动画的 H5 课件」时触发。核心铁律：生图/视频必落本地 assets/ 且文件名对齐引用；批量重生成先删旧图。
 ---
 
-# 课程 PPT · HTML 生产线（6 阶段编排）
+# 课程 PPT · HTML 生产线（5 阶段编排）
 
-> 定位：把"做一份能翻页、有 IP 插画、有微动视频、能录成成片"的网页 PPT 拆成可控阶段。
+> 定位：把"做一份能翻页、有 IP 插画、有微动视频"的网页 PPT 拆成可控阶段。
 > 设计原则：**每个阶段结束都有用户确认门，不确认不进下一阶段**。需要用户给资料/拍板的地方，全部前置成标准化节点，不让用户反复在半成品上救火。
 > 触发后先读 `references/confirmation-sop.md`（确认节点 + 资料清单）与 `references/pitfalls.md`（踩坑册），再按下方流程推进。
 
@@ -16,28 +16,28 @@ description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完�
 为「一门课 / 一次分享 / 一场演讲」产出**单文件 HTML** 网页 PPT，可本地翻页、可录视频、可分发。需要：
 
 - 个人 IP 形象配图（如汉堡 IP 小黑风）且跨图一致、零水印；
-- 把插画做成 **3 秒微动视频**并嵌进 PPT，或把整本 PPT **录成一段视频**；
+
 - 用户明确要"分阶段、先确认再继续"的协作方式。
 
-本 skill 是**编排器**：它把两个核心能力技能串起来，贯穿 6 阶段输出成品。克隆本仓库即可运行（内置兜底模板 `assets/template.html` / `references/ip-illustration.md`），但**推荐路径依赖两个核心技能**——`guizang-ppt-skill`（阶段3 视觉系统）与 `ian-xiaohei-illustrations`（阶段4 IP 配图）。**G0 前置检查必须确认这两个技能已就绪**（缺失则自动安装或走降级）。完整说明见 `references/dependencies.md`。
+本 skill 是**编排器**：它把两个核心能力技能串起来，贯穿 5 阶段输出成品。克隆本仓库即可运行（内置兜底模板 `assets/template.html` / `references/ip-illustration.md`），但**推荐路径依赖两个核心技能**——`guizang-ppt-skill`（阶段3 视觉系统）与 `ian-xiaohei-illustrations`（阶段4 IP 配图）。**G0 前置检查必须确认这两个技能已就绪**（缺失则自动安装或走降级）。完整说明见 `references/dependencies.md`。
 
 ---
 
 ## 先读这些参考（按阶段需要，不要一次塞满上下文）
 
 - `references/dependencies.md`：两个核心依赖技能（guizang-ppt-skill / ian-xiaohei-illustrations）的作用、使用阶段、G0 前置检查与降级路径。
-- `references/confirmation-sop.md`：G0–G6 确认门话术 + 用户侧资料准备清单。
-- `references/pitfalls.md`：生图 / HTML / 视频 / 录制 / 协作 5 类真实踩坑与预防。
+- `references/confirmation-sop.md`：G0–G5 确认门话术 + 用户侧资料准备清单。
+- `references/pitfalls.md`：生图 / HTML / 视频 / 协作 4 类真实踩坑与预防。
 - `references/html-deck-spec.md`：单文件 HTML deck 的规格（CSS 变量、翻页 JS、`syncVideos`、配图/视频容器写法）。
 - `references/ip-illustration.md`：IP 插画提示词模板 + 多工具替代（GPT-Image / DALL·E / 小云雀 / 即梦）。
 - `assets/template.html`：开箱即用的单文件 HTML deck 模板（含主题变量、翻页、视频同步、备注层）。
-- `scripts/capture.cjs` + `scripts/build_video.py`：整本录制的「截图 + 合成」脚本。
+
 
 ---
 
 ## 依赖技能（前置检查，必须）
 
-本 skill 是**编排器**：它把下面两个核心能力技能串起来，贯穿 6 阶段输出成品。两个技能是**推荐路径的硬依赖**，G0 前置检查必须确认就绪（缺失则自动安装或走降级）。完整说明与检测/安装命令见 `references/dependencies.md`。
+本 skill 是**编排器**：它把下面两个核心能力技能串起来，贯穿 5 阶段输出成品。两个技能是**推荐路径的硬依赖**，G0 前置检查必须确认就绪（缺失则自动安装或走降级）。完整说明与检测/安装命令见 `references/dependencies.md`。
 
 | 技能 | 作用 | 用于阶段 | 在流程中的角色 |
 |---|---|---|---|
@@ -59,19 +59,18 @@ description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完�
 
 - 用户要给一门课 / 一次分享 / 一场演讲做**单文件 HTML** 网页 PPT（可本地翻页、可录视频、可分发）。
 - 需要**个人 IP 形象配图**且要求跨图一致、零水印。
-- 需要把插画做成**3 秒微动视频**并嵌进 PPT，或把整本 PPT**录成一段视频**。
+- 需要把插画做成**3 秒微动视频**并嵌进 PPT。
 - 用户明确要"分阶段、先确认再继续"的协作方式。
 
 **不适用**：纯文字报告、需要多人实时协作编辑的 PPT、大段表格数据堆叠（用常规 PPT 工具）。
 
 ---
 
-## 总览：6 阶段 + 7 个确认门
+## 总览：5 阶段 + 6 个确认门
 
 ```
 G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──► 阶段2 文档版方案 ──G2──►
-阶段3 单 HTML 生成 ──G3──► 阶段4 IP 配图 ──G4──► 阶段5 视频生成嵌入 ──G5──►
-阶段6 整本录制 ──G6──► 交付
+阶段3 单 HTML 生成 ──G3──► 阶段4 IP 配图 ──G4──► 阶段5 视频生成嵌入 ──G5──► 交付
 ```
 
 | 阶段 | 目标 | 主要工具（任选其一） | 确认门 |
@@ -82,7 +81,6 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 | 3 生成 | 单 HTML 可翻页 | `assets/template.html` + `references/html-deck-spec.md` | G3 |
 | 4 配图 | IP 形象一致、零水印 | `references/ip-illustration.md` + 任意生图工具 | G4 |
 | 5 视频 | 插图会动 + 嵌入 | 小云雀/XYQ CLI 或本地视频模型 | G5 |
-| 6 录制 | 整本成片 | `scripts/capture.cjs` + `scripts/build_video.py` | G6 |
 
 ---
 
@@ -161,42 +159,25 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 - 必带**限频退避重试**（60/90/120/150s）+ 每页间隔 20s + 幂等跳过重文件（防 `操作过于频繁` 类限频）。
 - 落本地铁律同样适用：视频 rename 为 `vNN.mp4` 对齐引用。
 
-**G5 确认点**：用户确认"视频页范围 + 嵌入方式（自动播/点击播）"后，进阶段6。
+**G5 确认点**：用户确认"视频页范围 + 嵌入方式（自动播/点击播）"后，进交付（成品 PPT 完成）。
 
 ---
 
-## 阶段 6 · 整本录制视频（G6）
-
-**目标**：把全部页面翻页过程录成一段视频，每页 ≤5s，只录网页内容区（视口非全屏）。
-**🔴 关键结论**：headless Chromium 的 Playwright `recordVideo` **录不到 `<video>` 播放帧**（录出来是冻结 poster，帧差≈0）。必须走**「截图 + 合成」法**（见 `references/pitfalls.md` 录制段 + `scripts/`）。
-**做法**：
-1. Playwright 翻页 `window.go(i)`，每页等 **1.2s 让动画 settle**。
-2. 截图前用 JS `visibility:hidden` **隐藏 `<video>`**（避免底图带 poster → 双重图像），截干净底图后再恢复。
-3. 用 JS `getBoundingClientRect()` 取 video 在 1280×720 视口内的精确坐标（必须在视口内，溢出即截图未 settle）。
-4. ffmpeg 把真实 `vNN.mp4` 按 **object-fit:contain** 算裁剪框，overlay 回原坐标；视频页 4s、静态页 3s；全部段 concat。
-5. 环境：用 `ffmpeg-static` 静态二进制（系统 ffmpeg 在某些 macOS 上损坏缺 libxcb）；`vNN.mp4` 真实尺寸非 1280×720 → 必须探测真实分辨率算 contain，不能假设。
-
-脚本：`scripts/capture.cjs`（截图+取坐标+隐藏 video）、`scripts/build_video.py`（合成+contain 对齐），路径均已参数化。
-
-**G6 确认点**：用户确认"录制参数（停留/视口/音轨）"后，交付成片（如 `course-ppt-video.mp4`）。
-
----
 
 ## 贯穿全程的执行铁律
 
 1. 🔴 生图/视频必落本地 `assets/`，文件名对齐 HTML 引用。
 2. 批量重生成前先删旧图。
 3. 视频生成必带限频退避 + 幂等跳过重文件 + 轮询 ≥40 次。
-4. 截图前动画完全 settle；叠加元素截图时先隐藏。
-5. 方案→实现后逐页 checklist 对账（配图/画板/视频标记逐页核销）。
-6. 用补丁绕过的问题必须当轮回写主流程。
+4. 方案→实现后逐页 checklist 对账（配图/画板/视频标记逐页核销）。
+5. 用补丁绕过的问题必须当轮回写主流程。
 
 ---
 
 ## 运行环境适配
 
 - **在 Claude Code / Codex 中**：用普通对话直接问用户确认（无 `AskUserQuestion` 就用纯文本提问）；本地预览用 `python3 -m http.server` 起服务。
-- **在 ChatGPT（无 shell）中**：你负责规划、写 HTML、出提示词；生图/视频由用户按提示词去小云雀 / DALL·E / 即梦执行，再把文件放回 `assets/`。录制脚本（Playwright+ffmpeg）在用户本地或 Codex 环境跑。
+- **在 ChatGPT（无 shell）中**：你负责规划、写 HTML、出提示词；生图/视频由用户按提示词去小云雀 / DALL·E / 即梦执行，再把文件放回 `assets/`。
 - **安装本 skill**：见 `README.md`（`npx skills add` 或 clone 到 `~/.claude/skills/` / `~/.codex/skills/`）。
 
 ---
@@ -218,8 +199,8 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 - `references/html-deck-spec.md`：deck 规格（CSS 变量 / 翻页 / syncVideos / 容器写法）。
 - `references/ip-illustration.md`：阶段4 IP 配图提示词模板 + 多工具替代。
 - `references/dependencies.md`：两个核心依赖技能的作用、使用阶段、G0 前置检查与降级路径。
-- `references/confirmation-sop.md`：G0–G6 确认门 + 资料清单。
+- `references/confirmation-sop.md`：G0–G5 确认门 + 资料清单。
 - `references/pitfalls.md`：5 类真实踩坑与预防。
-- `scripts/capture.cjs` + `scripts/build_video.py`：阶段6 录制「截图+合成」。
+
 
 **详细踩坑册**见 `references/pitfalls.md`；**确认节点 + 资料清单**见 `references/confirmation-sop.md`。

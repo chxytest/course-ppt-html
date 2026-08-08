@@ -48,7 +48,7 @@
   #dots{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:30;}
   #dots .dot{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:.3s;}
   #dots .dot.active{background:var(--accent);transform:scale(1.3);}
-  /* ===== 讲师备注层（N 键切换，不进录制） ===== */
+  /* ===== 讲师备注层（N 键切换，不干扰演示） ===== */
   .teacher-notes{position:absolute;left:8vw;right:8vw;bottom:7vh;background:rgba(10,31,61,.92);
     color:#fff;padding:16px 20px;border-radius:12px;font-size:14px;line-height:1.6;display:none;z-index:40;}
   .teacher-notes.show{display:block;}
@@ -187,7 +187,7 @@
     x0=null;
   },{passive:true});
 
-  // 暴露给录制脚本：window.go(i)
+  // 暴露给外部控制：window.go(i)
   window.go = go;
 })();
 </script>

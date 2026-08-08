@@ -6,7 +6,7 @@
 
 ## 1. 文件结构（单文件）
 
-一个 `index.html` 包含：`<style>`（全部 CSS，含 `:root` 主题变量）、`<body>`（`.deck` + 多张 `.slide`）、`<script>`（翻页/同步逻辑）。**不要引外部 CDN、不要引外部字体文件**（用系统字体栈），否则录制/分发会断。
+一个 `index.html` 包含：`<style>`（全部 CSS，含 `:root` 主题变量）、`<body>`（`.deck` + 多张 `.slide`）、`<script>`（翻页/同步逻辑）。**不要引外部 CDN、不要引外部字体文件**（用系统字体栈），否则分发会断。
 
 ---
 
@@ -99,7 +99,7 @@ function syncVideos(idx){
 - 键盘：`←`/`→` 翻页；`N` 切换讲师备注层；`B` 静态/动态切换（可选）。
 - 圆点导航：每页一个 `.dot`，点击 `go(i)`。
 - 触摸：`touchstart`/`touchend` 判断横滑方向。
-- 讲师备注层：每个 `.slide` 内放 `<aside class="teacher-notes">...</aside>`，按 N 显示/隐藏（绝对定位覆盖，不进录制画面）。
+- 讲师备注层：每个 `.slide` 内放 `<aside class="teacher-notes">...</aside>`，按 N 显示/隐藏（绝对定位覆盖，不干扰演示）。
 
 ---
 
