@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 (2026-08-08)
+
+- **补全 WorkBuddy 接入说明**（用户指出原 docs 只写了 Claude/Codex/ChatGPT，缺 WorkBuddy 自身）：
+  - `README.md` 新增「WorkBuddy（原生支持 · 推荐）」安装段：clone 到 `~/.workbuddy/skills/` 或 rsync 同步；列举 WorkBuddy 专属优势（确认门原生交互 / `present_files` 预览分享 / Ardot 画布 / 依赖技能已就位 / 生图视频直调）。
+  - `SKILL.md`「运行环境适配」新增 WorkBuddy 条目；安装指引改为四平台并列（WorkBuddy / Claude / Codex / ChatGPT）。
+
 ## 1.2.0 (2026-08-08)
 
 - **定稿 `references/sample-prompts.md`**：用 OPC 项目的**真实用户提示词原文**替换原反向推导样例。按 5 段组织 —— ① PPT+IP 配图总调度（阶段3+4）② 个人 IP 三视图（阶段4 前置 ★可复用）③ 文档版 PPT 方案（阶段2 ★可复用）④ 配图转视频（阶段5）⑤ ian 适配成自己 IP 形象（阶段4 风格迁移）。

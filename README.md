@@ -33,6 +33,31 @@ cp -R ./course-ppt-html "${CODEX_HOME:-$HOME/.codex}/skills/"
 1. 把本仓库 `SKILL.md` 全文 + `references/` 内容作为**知识/指令**粘贴进自定义 GPT 的 Instructions。
 2. 让 GPT 负责规划、写 HTML、出配图提示词；生图/视频由你按提示词去 DALL·E / 小云雀 / 即梦执行，再把文件放回 `assets/`。
 
+### WorkBuddy（原生支持 · 推荐）
+
+WorkBuddy 的技能目录是 **`~/.workbuddy/skills/`**，把本仓库放进去即可被原生识别和调用，且能直接用到 WorkBuddy 专属能力（确认门交互、本地预览、文件分享、设计画布）。
+
+```bash
+# 方式一：git clone 到技能目录（推荐，便于后续 pull 更新）
+git clone https://github.com/chxytest/course-ppt-html.git ~/.workbuddy/skills/course-ppt-html
+
+# 方式二：已在本机有副本，直接 rsync（排除 .git / .DS_Store）
+rsync -a --exclude='.git' --exclude='.DS_Store' \
+  /path/to/course-ppt-html/ ~/.workbuddy/skills/course-ppt-html/
+```
+
+安装后在 WorkBuddy 对话框直接说：
+
+> 用 course-ppt-html 做一份 HTML 版课程 PPT，主题：如何成为一个 AI 时代的 OPC
+
+**WorkBuddy 原生存用优势**（相比纯文本 Agent）：
+
+- **确认门交互**：阶段间的 G0–G5 用 WorkBuddy 的原生提问/选项卡片与用户对齐，比纯文本更顺。
+- **本地预览与文件分享**：阶段3 起用本地静态服务器（`http://localhost:8080`）起预览，并用 `present_files` 直接在对话框内打开 HTML / 图片 / 视频，用户无需手动找文件。
+- **设计画布（Ardot）**：若需要把 HTML 稿同步到 Ardot 设计画布做像素级微调，可接 `ardot-html-sync` / `ardot-prototype-replica` 技能。
+- **依赖技能已就位**：`guizang-ppt-skill`（阶段3）与 `ian-xiaohei-illustrations`（阶段4）通常已装在 `~/.workbuddy/skills/`；G0 前置检查会确认，缺失则自动 `npx skills add` 或提示安装。
+- **生图/视频链路**：WorkBuddy 可直接调 `gpt-image-2` / 小云雀 CLI（`xyq`）等生图，以及视频生成技能，无需用户手动搬运文件。
+
 ---
 
 ## 快速开始（5 阶段）

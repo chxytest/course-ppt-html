@@ -181,7 +181,8 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 
 - **在 Claude Code / Codex 中**：用普通对话直接问用户确认（无 `AskUserQuestion` 就用纯文本提问）；本地预览用 `python3 -m http.server` 起服务。
 - **在 ChatGPT（无 shell）中**：你负责规划、写 HTML、出提示词；生图/视频由用户按提示词去小云雀 / DALL·E / 即梦执行，再把文件放回 `assets/`。
-- **安装本 skill**：见 `README.md`（`npx skills add` 或 clone 到 `~/.claude/skills/` / `~/.codex/skills/`）。
+- **在 WorkBuddy 中（原生支持，推荐）**：确认门用 WorkBuddy 原生提问/选项卡片交互；本地预览与文件分享用 `present_files` 直接在对话框打开 HTML / 图片 / 视频；生图可直调 `gpt-image-2` / 小云雀 CLI，视频用视频生成技能，无需用户手动搬运文件。详见 `README.md` 的「WorkBuddy」安装段。
+- **安装本 skill**：见 `README.md`（WorkBuddy → clone 到 `~/.workbuddy/skills/`；Claude/Codex → `npx skills add` 或 clone 到 `~/.claude/skills/` / `~/.codex/skills/`；ChatGPT → 粘贴 SKILL.md 为指令）。
 
 ---
 
