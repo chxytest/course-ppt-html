@@ -190,10 +190,17 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 
 本 skill 在 **阶段3 / 阶段4** 推荐直接调用下面两个核心技能（G0 前置检查确认就绪）：
 
-- `guizang-ppt-skill`：单文件 HTML 网页 PPT 视觉系统（电子杂志风 / 瑞士国际主义，多套主题与版式）。安装：`npx skills add op7418/guizang-ppt-skill --skill guizang-ppt-skill`。**用于阶段3** 产出 HTML 视觉底座。
-- `ian-xiaohei-illustrations`：个人 IP 角色配图风格 DNA + 提示词模板（图生图锁人物、跨图一致、零水印）。安装：`npx skills add helloianneo/ian-xiaohei-illustrations --skill ian-xiaohei-illustrations`。**用于阶段4** 产出 IP 配图。
+- `guizang-ppt-skill`：单文件 HTML 网页 PPT 视觉系统。安装：`npx skills add op7418/guizang-ppt-skill --skill guizang-ppt-skill`。**用于阶段3** 产出 HTML 视觉底座。
+  - **内置 2 套风格**：
+    - 风格 A · 电子杂志 × 电子墨水（默认）：衬线大标题 + 流体背景；**内置 5 套主题色预设（只能选、不能自定义 hex）**：① 墨水经典（默认）② 靛蓝瓷（科技/数据）③ 森林墨（自然/文化）④ 牛皮纸（怀旧/人文）⑤ 沙丘（艺术/设计）；10 种现成布局骨架。
+    - 风格 B · 瑞士国际主义：全程无衬线 + 极致字号对比；**内置 4 套高反差功能色（四选一）**：克莱因蓝 IKB / 柠檬黄 / 柠檬绿 / 安全橙；**22 个登记版式（S01–S22）**。
+  - 🔗 原仓库（完整风格 / 版式 / 主题色 / 自检清单）：https://github.com/op7418/guizang-ppt-skill
+- `ian-xiaohei-illustrations`：个人 IP 角色配图风格 DNA + 提示词模板。安装：`npx skills add helloianneo/ian-xiaohei-illustrations --skill ian-xiaohei-illustrations`。**用于阶段4** 产出 IP 配图。
+  - **内置风格 DNA**：默认视觉 IP「汉堡 IP」（戴方框黑框眼镜、穿浅灰休闲西装的温和认真男人，3D 转 2D 手办质感）；16:9 横版中文配图、浅灰/米白洁净背景 + 大量留白、圆润立体干净描边平涂、少量红/橙/蓝中文批注；铁律：IP 必须参与核心动作、禁止 PPT 感/幼稚可爱/左上角标题。
+  - 想换成自己的 IP：用 `references/sample-prompts.md` 第五段做风格迁移，保持项目结构不变。
+  - 🔗 原仓库（完整风格 DNA 与案例）：https://github.com/helloianneo/ian-xiaohei-illustrations
 
-> 调用这两个技能时请遵守其各自的 License 与使用边界。内置 `assets/template.html` / `references/ip-illustration.md` 仅为降级兜底，不替代官方技能。完整前置检查流程见 `references/dependencies.md`。
+> 在阶段3/4 进入前，编排器会**按需**把上面对应风格清单展示给你确认（不强制弹），定下风格/主题色/角色动作后再生成。调用这两个技能时请遵守其各自的 License 与使用边界。内置 `assets/template.html` / `references/ip-illustration.md` 仅为降级兜底，不替代官方技能。完整前置检查流程见 `references/dependencies.md`。
 
 ---
 
