@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课程 PPT · 模板</title>
+<!--
+  course-ppt-html · 单文件 HTML Deck 模板
+  用法：复制为 index.html，按注释替换内容。零外部依赖，可离线打开。
+  规格见 references/html-deck-spec.md
+-->
+<style>
+  :root{
+    --ink:#0a1f3d;        /* 主文字/深色块 */
+    --paper:#f1f3f5;      /* 背景 */
+    --accent:#002FA7;     /* 高亮锚点色（克莱因蓝 IKB） */
+    --accent2:#E8552D;    /* 次级高亮（安全橙，路径/标注） */
+    --muted:#6b7280;      /* 次要文字 */
+    --line:#d8dce1;       /* 发丝线/网格 */
+  }
+  *{box-sizing:flex;box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:var(--paper);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;}
+  /* ===== 翻页容器 ===== */
+  #stage{position:fixed;inset:0;overflow:hidden;}
+  #deck{display:flex;height:100%;transition:transform .6s cubic-bezier(.22,.61,.36,1);}
+  .slide{flex:0 0 100%;height:100%;display:flex;flex-direction:column;
+    justify-content:center;padding:6vh 8vw;position:relative;}
+  .slide.light{background:var(--paper);}
+  .slide.dark{background:var(--ink);color:#fff;}
+  /* ===== 标题文字 ===== */
+  .kicker{font-size:14px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:18px;}
+  .slide.dark .kicker{color:#9db4ff;}
+  h1{font-size:clamp(32px,5vw,64px);line-height:1.1;font-weight:800;margin-bottom:20px;}
+  h2{font-size:clamp(26px,3.4vw,44px);line-height:1.15;font-weight:700;margin-bottom:16px;}
+  .lead{font-size:clamp(16px,1.8vw,22px);color:var(--muted);max-width:60ch;line-height:1.6;}
+  .slide.dark .lead{color:#c7d0e0;}
+  /* ===== 配图容器（🔴 必须 contain + overflow:visible + height:auto） ===== */
+  .frame-img{width:100%;overflow:visible;display:flex;justify-content:center;align-items:center;margin-top:24px;}
+  .frame-img img{width:100%;height:auto;max-height:72vh;object-fit:contain;}
+  .frame-img video{width:100%;height:auto;max-height:72vh;object-fit:contain;background:var(--paper);}
+  /* ===== 分栏 ===== */
+  .split{display:grid;grid-template-columns:1.1fr .9fr;gap:5vw;align-items:center;}
+  /* ===== 过渡/英雄页 ===== */
+  .hero{text-align:center;align-items:center;}
+  .hero .lead{margin:0 auto;}
+  /* ===== 圆点导航 ===== */
+  #dots{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:30;}
+  #dots .dot{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:.3s;}
+  #dots .dot.active{background:var(--accent);transform:scale(1.3);}
+  /* ===== 讲师备注层（N 键切换，不进录制） ===== */
+  .teacher-notes{position:absolute;left:8vw;right:8vw;bottom:7vh;background:rgba(10,31,61,.92);
+    color:#fff;padding:16px 20px;border-radius:12px;font-size:14px;line-height:1.6;display:none;z-index:40;}
+  .teacher-notes.show{display:block;}
+  /* ===== 页码 ===== */
+  .pageno{position:absolute;top:5vh;right:8vw;font-size:13px;color:var(--muted);}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="deck">
+
+    <!-- ===== 第1页：封面（示例） ===== -->
+    <section class="slide dark">
+      <div class="kicker">一人公司 · 公开课</div>
+      <h1>如何成为一个<br>AI 时代的 OPC</h1>
+      <p class="lead">把组织折叠进一个人，用 AI 杠杆放大产出。</p>
+      <aside class="teacher-notes">开场：先抛一个反差——传统公司 vs 一人公司。点出今天的三条主线：定位、能力、杠杆。</aside>
+      <div class="pageno">01 / 06</div>
+    </section>
+
+    <!-- ===== 第2页：内容 + 配图（示例） ===== -->
+    <section class="slide light">
+      <div class="split">
+        <div>
+          <div class="kicker">核心概念</div>
+          <h2>一个人，扮演多个岗位</h2>
+          <p class="lead">CEO、产品经理、运营、客服——全部由一个人在 AI 协助下承担。岗位不是消失，而是被压缩进同一具身体。</p>
+        </div>
+        <div class="frame-img">
+          <!-- 🔴 替换为你的配图：assets/p02.jpeg -->
+          <img src="assets/p02.jpeg" alt="汉堡 IP 扮演一人公司多岗位">
+        </div>
+      </div>
+      <aside class="teacher-notes">这里强调"压缩"而非"替代"。用 P02 插画里的多屏场景具象化。</aside>
+      <div class="pageno">02 / 06</div>
+    </section>
+
+    <!-- ===== 第3页：内容 + 视频（示例） ===== -->
+    <section class="slide light">
+      <div class="split">
+        <div>
+          <div class="kicker">能力拆解</div>
+          <h2>三环交集：你唯一该站的位置</h2>
+          <p class="lead">热爱 × 擅长 × 被需要 的交集，就是一人公司最稳的立足点。视频演示交集如何动态收敛。</p>
+        </div>
+        <div class="frame-img">
+          <!-- 🔴 视频页写法：<video> 替代 <img>，poster 用静帧 -->
+          <video src="assets/v03.mp4" poster="assets/p03.jpeg"
+                 muted loop playsinline preload="metadata" title="三环交集收敛动画"></video>
+        </div>
+      </div>
+      <aside class="teacher-notes">播放视频时同步讲：交集不是一次定死，是随市场反馈持续收敛的过程。</aside>
+      <div class="pageno">03 / 06</div>
+    </section>
+
+    <!-- ===== 第4页：过渡/英雄页（示例） ===== -->
+    <section class="slide dark hero">
+      <div class="kicker">第二部分</div>
+      <h1>从想法到收入</h1>
+      <p class="lead">最小代价验证，最快速度闭环。</p>
+      <aside class="teacher-notes">过渡页：停顿 1–2 秒，给观众消化。不堆内容。</aside>
+      <div class="pageno">04 / 06</div>
+    </section>
+
+    <!-- ===== 第5页：方法/步骤（示例） ===== -->
+    <section class="slide light">
+      <div class="kicker">行动框架</div>
+      <h2>四步启动你的 OPC</h2>
+      <p class="lead">① 锁定交集定位 → ② 设计 MVP 探针 → ③ 用 AI 杠杆放大 → ④ 建立反馈飞轮。</p>
+      <aside class="teacher-notes">每步给一个学员能立刻上手的小动作，别停在概念。</aside>
+      <div class="pageno">05 / 06</div>
+    </section>
+
+    <!-- ===== 第6页：封底（示例） ===== -->
+    <section class="slide dark hero">
+      <div class="kicker">行动号召</div>
+      <h1>今天，就开始<br>折叠你的组织</h1>
+      <p class="lead">关注公众号「龙虾日记」，获取配套模板与工具清单。</p>
+      <aside class="teacher-notes">收尾：回到开头的反差，给出唯一行动项——先做一个最小探针。</aside>
+      <div class="pageno">06 / 06</div>
+    </section>
+
+  </div>
+</div>
+<div id="dots"></div>
+
+<script>
+(function(){
+  const deck = document.getElementById('deck');
+  const slides = Array.from(deck.querySelectorAll('.slide'));
+  const dotsWrap = document.getElementById('dots');
+  let idx = 0, notesOn = false;
+
+  // 圆点导航
+  slides.forEach((s,i)=>{
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    d.onclick = ()=>go(i);
+    dotsWrap.appendChild(d);
+  });
+
+  function go(i){
+    idx = Math.max(0, Math.min(slides.length-1, i));
+    deck.style.transform = `translateX(${-idx*100}%)`;
+    dotsWrap.querySelectorAll('.dot').forEach((d,k)=>d.classList.toggle('active',k===idx));
+    if(window.syncVideos) syncVideos(idx);
+  }
+
+  // 🔴 视频同步：通用实现，新增视频页无需改这里
+  function syncVideos(cur){
+    slides.forEach((s,i)=>{
+      const v = s.querySelector('.frame-img > video');
+      if(!v) return;
+      if(i===cur){ v.play().catch(()=>{}); } else { v.pause(); v.currentTime=0; }
+    });
+  }
+  window.syncVideos = syncVideos;
+
+  // 键盘
+  window.addEventListener('keydown', e=>{
+    if(e.key==='ArrowRight'||e.key===' ') go(idx+1);
+    else if(e.key==='ArrowLeft') go(idx-1);
+    else if(e.key==='n'||e.key==='N'){
+      notesOn=!notesOn;
+      slides.forEach(s=>{const n=s.querySelector('.teacher-notes'); if(n) n.classList.toggle('show',notesOn);});
+    }
+  });
+
+  // 触摸滑动
+  let x0=null;
+  window.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  window.addEventListener('touchend',e=>{
+    if(x0===null) return;
+    const dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50) go(idx + (dx<0?1:-1));
+    x0=null;
+  },{passive:true});
+
+  // 暴露给录制脚本：window.go(i)
+  window.go = go;
+})();
+</script>
+</body>
+</html>
