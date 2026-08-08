@@ -43,14 +43,9 @@ fs.mkdirSync(OUT, { recursive: true });
 
     // 取视频坐标（在隐藏前读，坐标本身是布局属性不受影响）
     const info = await page.evaluate(() => {
-      const v = document.querySelector('.slide:not([style*="translateX"]) .frame-img > video')
-        || document.querySelector('.frame-img > video');
-      // 上面的选择器不可靠，改用当前页：遍历找 active 页
+      // 当前页 = 视口内 left≈0 的那张 slide（go() 已平移 deck）
       const slides = Array.from(document.querySelectorAll('.slide'));
-      const cur = slides.findIndex(s => {
-        const t = s.getBoundingClientRect().left;
-        return Math.abs(t) < 2; // 当前页 left≈0
-      });
+      const cur = slides.findIndex(s => Math.abs(s.getBoundingClientRect().left) < 2);
       const sv = cur >= 0 ? slides[cur].querySelector('.frame-img > video') : null;
       if (!sv) return { hasVideo: false };
       const r = sv.getBoundingClientRect();
