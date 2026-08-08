@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2 (2026-08-08)
+
+- **README 新增「依赖技能内置风格速查」段**：说明 guizang-ppt-skill 内置 2 套风格（电子杂志风 5 套主题色 / 瑞士风 4 套功能色 + 22 版式）与 ian-xiaohei-illustrations 内置风格 DNA（汉堡 IP、浅灰洁净背景、3D转2D 手办质感、红橙蓝批注），并附两技能原 GitHub 地址；注明"用户问可直接发清单，或访问原仓库查看完整细节"。
+
 ## 1.2.1 (2026-08-08)
 
 - **补全 WorkBuddy 接入说明**（用户指出原 docs 只写了 Claude/Codex/ChatGPT，缺 WorkBuddy 自身）：
