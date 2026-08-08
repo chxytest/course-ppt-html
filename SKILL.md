@@ -30,6 +30,7 @@ description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完�
 - `references/pitfalls.md`：生图 / HTML / 视频 / 协作 4 类真实踩坑与预防。
 - `references/html-deck-spec.md`：单文件 HTML deck 的规格（CSS 变量、翻页 JS、`syncVideos`、配图/视频容器写法）。
 - `references/ip-illustration.md`：IP 插画提示词模板 + 多工具替代（GPT-Image / DALL·E / 小云雀 / 即梦）。
+- `references/sample-prompts.md`：阶段3/4 **样例提示词参考**（guizang 风格描述 / ian 角色卡+分镜），**按需展示给用户调优，不写死、不强制弹**。
 - `assets/template.html`：开箱即用的单文件 HTML deck 模板（含主题变量、翻页、视频同步、备注层）。
 
 
@@ -123,6 +124,7 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 
 **目标**：产出可翻页的单 HTML。
 **工具**：**优先调用 `guizang-ppt-skill`** 产出单 HTML 视觉底座（瑞士风 / 杂志风主题、版式、横翻页、动效）；若该技能不可用，则基于内置 `assets/template.html`（复制为 `index.html` 后填充）。deck 规格见 `references/html-deck-spec.md`。
+**样例提示词**：风格/主题色描述样例见 `references/sample-prompts.md`（guizang 段）。进入阶段3 时**可按需**展示给用户调优风格与主题色——**不强制弹**，仅在用户需要或你判断有助于对齐时展示，确认后再生成。
 **关键注意**（详见 `references/pitfalls.md` 的 HTML/CSS 段）：
 - 图片容器用 `object-fit:contain` + `overflow:visible` + `height:auto`，**不要** `cover`+`hidden`（会裁图）。
 - 过渡/居中类修改用 CSS 规则加 `!important`，不要依赖内联 style（易被缓存/覆盖）。
@@ -136,6 +138,7 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 
 **目标**：生成跨图一致、零水印的 IP 配图，落本地。
 **工具**：**优先调用 `ian-xiaohei-illustrations`** 产出 IP 配图 shot list 与提示词（图生图锁人物、跨图一致、零水印）；若该技能不可用，则用内置 `references/ip-illustration.md`（含多工具替代矩阵）。生图工具任选：GPT-Image / DALL·E / 小云雀 / 即梦 / Midjourney。
+**样例提示词**：角色卡 + 分镜动作样例见 `references/sample-prompts.md`（ian 段）。进入阶段4 时**可按需**展示给用户调优角色/动作/标注词——**不强制弹**，确认后再生成。
 **🔴 执行铁律（必须严格遵守，详见 `references/pitfalls.md` 生图链路段）**：
 1. **每次生图必落本地 `assets/`，文件名与 HTML 引用严格对齐**（如 `p03.jpeg`）。
 2. **批量重生成前先删旧图**（杜绝 skip 逻辑残留旧图）。
@@ -198,6 +201,7 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 - `assets/template.html`：阶段3 单文件 HTML deck 起点。
 - `references/html-deck-spec.md`：deck 规格（CSS 变量 / 翻页 / syncVideos / 容器写法）。
 - `references/ip-illustration.md`：阶段4 IP 配图提示词模板 + 多工具替代。
+- `references/sample-prompts.md`：阶段3/4 样例提示词参考（按需展示给用户调优，不写死）。
 - `references/dependencies.md`：两个核心依赖技能的作用、使用阶段、G0 前置检查与降级路径。
 - `references/confirmation-sop.md`：G0–G5 确认门 + 资料清单。
 - `references/pitfalls.md`：5 类真实踩坑与预防。

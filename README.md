@@ -64,9 +64,10 @@ course-ppt-html/
 └── references/
 │   ├── dependencies.md          # 两个核心依赖技能的作用/使用阶段/G0 前置检查/降级路径
 │   ├── confirmation-sop.md      # G0–G5 确认门 + 用户资料清单
-│   ├── pitfalls.md              # 5 类真实踩坑与预防
+│   ├── pitfalls.md              # 4 类真实踩坑与预防
 │   ├── html-deck-spec.md        # deck 规格（CSS 变量/翻页/syncVideos/容器写法）
-│   └── ip-illustration.md       # IP 配图提示词模板 + 多工具替代
+│   ├── ip-illustration.md       # IP 配图提示词模板 + 多工具替代
+│   └── sample-prompts.md        # 阶段3/4 样例提示词参考（按需展示调优，不写死）
 ```
 
 ---
