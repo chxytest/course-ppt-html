@@ -4,9 +4,9 @@
 
 把"能横向翻页、有 IP 插画、有微动视频、能录成成片"的网页 PPT，拆成 **6 个可控阶段**（资料确认 → 框架梳理 → 文档版方案 → 单 HTML 生成 → IP 配图生成 → 视频生成嵌入 → 整本录制），每阶段带**用户确认门（G0–G6）**与资料准备清单。
 
-**本 skill 自包含**：克隆本仓库即可运行，无需任何私有资产。内置：
-- `assets/template.html` — 开箱即用的单文件 HTML deck 模板（主题变量 / 翻页 / 视频同步 / 备注层）
-- `references/` — 确认 SOP、踩坑册、deck 规格、IP 配图提示词模板
+**本 skill 自带兜底模板可独立运行**：克隆本仓库即可跑（内置 `assets/template.html` / `references/ip-illustration.md` 作为降级兜底）。**推荐路径依赖两个核心技能**——`guizang-ppt-skill`（阶段3 视觉系统）与 `ian-xiaohei-illustrations`（阶段4 IP 配图）——**G0 前置检查会确认其就绪**（缺失则自动安装或走降级）。内置：
+- `assets/template.html` — 开箱即用的单文件 HTML deck 模板（主题变量 / 翻页 / 视频同步 / 备注层，降级兜底用）
+- `references/` — 确认 SOP、踩坑册、deck 规格、IP 配图提示词模板、依赖技能说明
 - `scripts/` — 整本录制的「截图 + 合成」Playwright + ffmpeg 脚本
 
 ---
@@ -65,6 +65,7 @@ course-ppt-html/
 ├── assets/
 │   └── template.html            # 单文件 HTML deck 模板（复制为 index.html 后填充）
 ├── references/
+│   ├── dependencies.md          # 两个核心依赖技能的作用/使用阶段/G0 前置检查/降级路径
 │   ├── confirmation-sop.md      # G0–G6 确认门 + 用户资料清单
 │   ├── pitfalls.md              # 5 类真实踩坑与预防
 │   ├── html-deck-spec.md        # deck 规格（CSS 变量/翻页/syncVideos/容器写法）
@@ -95,14 +96,16 @@ CAP=/tmp/cap2 ASSETS=./assets FINAL=./course-ppt-video.mp4 \
 
 ---
 
-## 可选上游依赖（不安装也能用）
+## 核心依赖技能（前置检查必须）
 
-- **guizang-ppt-skill** — 更丰富的网页 PPT 视觉系统（电子杂志风 / 瑞士国际主义）。
+本 skill 是编排器，在 **阶段3 / 阶段4** 推荐直接调用下面两个核心技能。**G0 前置检查会确认它们已就绪**（有 shell 时缺失自动 `npx skills add` 安装；无 shell 时请用户确认或走内置兜底）：
+
+- **guizang-ppt-skill** — 单文件 HTML 网页 PPT 视觉系统（电子杂志风 / 瑞士国际主义）。**用于阶段3** 产出 HTML 视觉底座。
   `npx skills add op7418/guizang-ppt-skill --skill guizang-ppt-skill`
-- **ian-xiaohei-illustrations** — 怪诞手绘正文配图风格。
+- **ian-xiaohei-illustrations** — 个人 IP 角色配图风格 DNA + 提示词模板（图生图锁人物、跨图一致、零水印）。**用于阶段4** 产出 IP 配图。
   `npx skills add helloianneo/ian-xiaohei-illustrations --skill ian-xiaohei-illustrations`
 
-若使用上游 skill，请遵守其各自的 License 与使用边界。
+> 调用这两个技能时请遵守其各自的 License 与使用边界。内置 `assets/template.html` / `references/ip-illustration.md` 仅为降级兜底，不替代官方技能。完整前置检查流程见 `references/dependencies.md`。
 
 ---
 

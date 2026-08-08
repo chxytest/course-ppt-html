@@ -1,6 +1,6 @@
 ---
 name: course-ppt-html
-description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完整生产线。把"能横向翻页、有 IP 插画、有微动视频、能录成成片"的网页 PPT 拆成 6 个可控阶段（资料确认 → 框架梳理 → 文档版方案 → 单 HTML 生成 → IP 配图生成 → 视频生成嵌入 → 整本录制），每阶段带用户确认门（G0–G6）与资料准备清单。内置自包含单文件 HTML deck 模板（assets/template.html）、IP 插画提示词模板（references/ip-illustration.md）、以及 Playwright+ffmpeg 录制脚本（scripts/）。当用户说「帮我做一份 HTML 版课程 PPT / 分享 PPT / 演讲 slides，主题：XXX」「把这篇内容做成网页 PPT」「生成带插画动画的 H5 课件」时触发。核心铁律：生图/视频必落本地 assets/ 且文件名对齐引用；批量重生成先删旧图；带 video 的页面录制走「截图+合成」法。
+description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完整生产线，把"能横向翻页、有 IP 插画、有微动视频、能录成成片"的网页 PPT 拆成 6 个可控阶段（资料确认 → 框架梳理 → 文档版方案 → 单 HTML 生成 → IP 配图生成 → 视频生成嵌入 → 整本录制），每阶段带用户确认门（G0–G6）与资料准备清单。本技能为编排器，推荐路径依赖 guizang-ppt-skill（阶段3 视觉系统）与 ian-xiaohei-illustrations（阶段4 IP 配图）两个核心技能，G0 前置检查确认其就绪（缺失则自动安装或走内置兜底）。当用户说「帮我做一份 HTML 版课程 PPT / 分享 PPT / 演讲 slides，主题：XXX」「把这篇内容做成网页 PPT」「生成带插画动画的 H5 课件」时触发。核心铁律：生图/视频必落本地 assets/ 且文件名对齐引用；批量重生成先删旧图；带 video 的页面录制走「截图+合成」法。
 ---
 
 # 课程 PPT · HTML 生产线（6 阶段编排）
@@ -19,18 +19,39 @@ description: 编排式生成「单 HTML 文件交互课程/分享 PPT」的完�
 - 把插画做成 **3 秒微动视频**并嵌进 PPT，或把整本 PPT **录成一段视频**；
 - 用户明确要"分阶段、先确认再继续"的协作方式。
 
-本 skill 是**自包含**的：克隆本仓库即可运行，无需额外的私有资产。可选的更丰富视觉风格来自两个上游 skill（见文末「可选上游依赖」），但**不安装也能用**——`assets/template.html` 与 `references/ip-illustration.md` 已提供够用的内联方案。
+本 skill 是**编排器**：它把两个核心能力技能串起来，贯穿 6 阶段输出成品。克隆本仓库即可运行（内置兜底模板 `assets/template.html` / `references/ip-illustration.md`），但**推荐路径依赖两个核心技能**——`guizang-ppt-skill`（阶段3 视觉系统）与 `ian-xiaohei-illustrations`（阶段4 IP 配图）。**G0 前置检查必须确认这两个技能已就绪**（缺失则自动安装或走降级）。完整说明见 `references/dependencies.md`。
 
 ---
 
 ## 先读这些参考（按阶段需要，不要一次塞满上下文）
 
+- `references/dependencies.md`：两个核心依赖技能（guizang-ppt-skill / ian-xiaohei-illustrations）的作用、使用阶段、G0 前置检查与降级路径。
 - `references/confirmation-sop.md`：G0–G6 确认门话术 + 用户侧资料准备清单。
 - `references/pitfalls.md`：生图 / HTML / 视频 / 录制 / 协作 5 类真实踩坑与预防。
 - `references/html-deck-spec.md`：单文件 HTML deck 的规格（CSS 变量、翻页 JS、`syncVideos`、配图/视频容器写法）。
 - `references/ip-illustration.md`：IP 插画提示词模板 + 多工具替代（GPT-Image / DALL·E / 小云雀 / 即梦）。
 - `assets/template.html`：开箱即用的单文件 HTML deck 模板（含主题变量、翻页、视频同步、备注层）。
 - `scripts/capture.cjs` + `scripts/build_video.py`：整本录制的「截图 + 合成」脚本。
+
+---
+
+## 依赖技能（前置检查，必须）
+
+本 skill 是**编排器**：它把下面两个核心能力技能串起来，贯穿 6 阶段输出成品。两个技能是**推荐路径的硬依赖**，G0 前置检查必须确认就绪（缺失则自动安装或走降级）。完整说明与检测/安装命令见 `references/dependencies.md`。
+
+| 技能 | 作用 | 用于阶段 | 在流程中的角色 |
+|---|---|---|---|
+| `guizang-ppt-skill` | 单文件 HTML 网页 PPT 视觉系统（瑞士风 / 杂志风主题、版式、横翻页、动效） | **阶段3 · 单 HTML 生成** | 产出可翻页的 HTML 骨架与视觉风格（优先于内置 `assets/template.html`） |
+| `ian-xiaohei-illustrations` | 个人 IP 角色配图风格 DNA + 提示词模板（图生图锁人物、跨图一致、零水印） | **阶段4 · IP 配图** | 产出跨图一致的 IP 插画（优先于内置 `references/ip-illustration.md`） |
+
+**前置检查（G0 必做）**：
+- 有 shell（Claude Code / Codex）：检测 skills 目录，缺失即自动 `npx skills add` 安装（命令见下）。
+  ```bash
+  npx skills add op7418/guizang-ppt-skill --skill guizang-ppt-skill
+  npx skills add helloianneo/ian-xiaohei-illustrations --skill ian-xiaohei-illustrations
+  ```
+- 无 shell（ChatGPT）：向用户确认两技能是否已加载；若否，明确告知将走内置兜底（视觉 / IP 一致性较弱）并请用户确认。
+- 内置 `assets/template.html` 与 `references/ip-illustration.md` **仅为降级兜底**，不替代官方技能。
 
 ---
 
@@ -103,7 +124,7 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 ## 阶段 3 · 生成单 HTML PPT（G3）
 
 **目标**：产出可翻页的单 HTML。
-**工具**：基于 `assets/template.html`（复制为 `index.html` 后填充），规格见 `references/html-deck-spec.md`。
+**工具**：**优先调用 `guizang-ppt-skill`** 产出单 HTML 视觉底座（瑞士风 / 杂志风主题、版式、横翻页、动效）；若该技能不可用，则基于内置 `assets/template.html`（复制为 `index.html` 后填充）。deck 规格见 `references/html-deck-spec.md`。
 **关键注意**（详见 `references/pitfalls.md` 的 HTML/CSS 段）：
 - 图片容器用 `object-fit:contain` + `overflow:visible` + `height:auto`，**不要** `cover`+`hidden`（会裁图）。
 - 过渡/居中类修改用 CSS 规则加 `!important`，不要依赖内联 style（易被缓存/覆盖）。
@@ -116,7 +137,7 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 ## 阶段 4 · IP 配图生成（G4）⭐ 最高频踩坑区
 
 **目标**：生成跨图一致、零水印的 IP 配图，落本地。
-**工具**：`references/ip-illustration.md`（风格 DNA + 提示词模板）+ 任意生图工具（GPT-Image / DALL·E / 小云雀 / 即梦 / Midjourney）。
+**工具**：**优先调用 `ian-xiaohei-illustrations`** 产出 IP 配图 shot list 与提示词（图生图锁人物、跨图一致、零水印）；若该技能不可用，则用内置 `references/ip-illustration.md`（含多工具替代矩阵）。生图工具任选：GPT-Image / DALL·E / 小云雀 / 即梦 / Midjourney。
 **🔴 执行铁律（必须严格遵守，详见 `references/pitfalls.md` 生图链路段）**：
 1. **每次生图必落本地 `assets/`，文件名与 HTML 引用严格对齐**（如 `p03.jpeg`）。
 2. **批量重生成前先删旧图**（杜绝 skip 逻辑残留旧图）。
@@ -180,12 +201,14 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 
 ---
 
-## 可选上游依赖（不安装也能用）
+## 核心依赖技能（前置检查必须）
 
-- `guizang-ppt-skill`：更丰富的网页 PPT 视觉系统（电子杂志风 / 瑞士国际主义，多套主题与版式）。安装：`npx skills add op7418/guizang-ppt-skill --skill guizang-ppt-skill`。阶段3 可直接调用它替代 `assets/template.html`。
-- `ian-xiaohei-illustrations`：怪诞手绘正文配图风格。安装：`npx skills add helloianneo/ian-xiaohei-illustrations --skill ian-xiaohei-illustrations`。阶段4 可调用它替代 `references/ip-illustration.md` 的提示词模板。
+本 skill 在 **阶段3 / 阶段4** 推荐直接调用下面两个核心技能（G0 前置检查确认就绪）：
 
-> 若使用上游 skill，请遵守其各自的 License 与使用边界。
+- `guizang-ppt-skill`：单文件 HTML 网页 PPT 视觉系统（电子杂志风 / 瑞士国际主义，多套主题与版式）。安装：`npx skills add op7418/guizang-ppt-skill --skill guizang-ppt-skill`。**用于阶段3** 产出 HTML 视觉底座。
+- `ian-xiaohei-illustrations`：个人 IP 角色配图风格 DNA + 提示词模板（图生图锁人物、跨图一致、零水印）。安装：`npx skills add helloianneo/ian-xiaohei-illustrations --skill ian-xiaohei-illustrations`。**用于阶段4** 产出 IP 配图。
+
+> 调用这两个技能时请遵守其各自的 License 与使用边界。内置 `assets/template.html` / `references/ip-illustration.md` 仅为降级兜底，不替代官方技能。完整前置检查流程见 `references/dependencies.md`。
 
 ---
 
@@ -194,6 +217,7 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 - `assets/template.html`：阶段3 单文件 HTML deck 起点。
 - `references/html-deck-spec.md`：deck 规格（CSS 变量 / 翻页 / syncVideos / 容器写法）。
 - `references/ip-illustration.md`：阶段4 IP 配图提示词模板 + 多工具替代。
+- `references/dependencies.md`：两个核心依赖技能的作用、使用阶段、G0 前置检查与降级路径。
 - `references/confirmation-sop.md`：G0–G6 确认门 + 资料清单。
 - `references/pitfalls.md`：5 类真实踩坑与预防。
 - `scripts/capture.cjs` + `scripts/build_video.py`：阶段6 录制「截图+合成」。
