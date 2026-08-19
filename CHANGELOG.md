@@ -5,6 +5,7 @@
 - **新增 `assets/toastmasters-theme.html`**：头马品牌风完整模板（含品牌色 `:root` 令牌 + 参数化分级卡片），做头马/品牌类现场互动 PPT 直接复制填充。
 - **新增 `references/toastmasters-tabletopics-kit.md`**：头马即兴演讲（Table Topics）题库 PPT 复用交互套件——编号选题板（localStorage 已选持久化 + 二次确认重置）/ 难度切换（Easy/Medium/Hard）/ 返回选题板 / `QUESTIONS` 数据模型 / 双语主持稿模板 / 主题色令牌 / 踩坑册。
 - SKILL.md：风格清单「内置 2 套」→「内置 3 套」；复用资产索引补两项。
+- README 新增「头马品牌风（Style C）」章节 + 目录结构补 `toastmasters-theme.html` / `toastmasters-tabletopics-kit.md` 两项。
 
 ## 1.2.3 (2026-08-08)
 - 把「依赖技能内置风格速查」同步进 SKILL.md 的「核心依赖技能」章节（guizang 2 风格 + 主题色/版式清单、ian 风格 DNA + 原仓库地址，并加"按需展示确认"提示）。

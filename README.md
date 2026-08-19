@@ -85,14 +85,16 @@ course-ppt-html/
 ├── VERSION                      # 版本号（与 CHANGELOG 对齐）
 ├── CHANGELOG.md
 ├── assets/
-│   └── template.html            # 单文件 HTML deck 模板（复制为 index.html 后填充）
+│   ├── template.html            # 单文件 HTML deck 模板（复制为 index.html 后填充）
+│   └── toastmasters-theme.html  # 头马品牌风完整模板（风格 C · Swiss 底座 + 品牌色令牌）
 └── references/
 │   ├── dependencies.md          # 两个核心依赖技能的作用/使用阶段/G0 前置检查/降级路径
 │   ├── confirmation-sop.md      # G0–G5 确认门 + 用户资料清单
 │   ├── pitfalls.md              # 4 类真实踩坑与预防
 │   ├── html-deck-spec.md        # deck 规格（CSS 变量/翻页/syncVideos/容器写法）
 │   ├── ip-illustration.md       # IP 配图提示词模板 + 多工具替代
-│   └── sample-prompts.md        # 阶段3/4 样例提示词参考（按需展示调优，不写死）
+│   ├── sample-prompts.md        # 阶段3/4 样例提示词参考（按需展示调优，不写死）
+│   └── toastmasters-tabletopics-kit.md  # 头马复用交互套件（选题板/难度切换/数据模型/主持稿/主题色令牌/踩坑）
 ```
 
 ---
@@ -138,6 +140,27 @@ course-ppt-html/
 - 🔗 原仓库（完整风格 DNA 与案例）：https://github.com/helloianneo/ian-xiaohei-illustrations
 
 > 在阶段3/4 进入前，编排器会**按需**把上面对应风格清单展示给你确认（不强制弹），定下风格/主题色/角色动作后再生成。
+
+---
+
+## 头马品牌风（Style C · 自带模板）
+
+`course-ppt-html` **自带一套完整可复制的头马（Toastmasters）品牌风模板**，不依赖 guizang 的任意预设色，直接复制即用。适合头马例会 / 品牌类分享 / 现场互动题库（即兴演讲、知识问答、破冰）。
+
+- **品牌色令牌（Brand Manual 直译 CSS 变量）**：
+  - 主色：Loyal Blue `#004165` / True Maroon `#772432` / Happy Yellow `#F2DF74`
+  - 渐变端点：Blissful Blue `#006094`、Deep Maroon `#3B0104`、Rich Maroon `#781327`、Fair Gray `#F5F5F5`
+- **参数化分级卡片**：三档信息层级用 `--tier-bg` / `--tier-fg` / `--tier-meta` 驱动，换场景只改这三个变量、结构不变。
+- **完整模板**：`assets/toastmasters-theme.html`（封面 + 分级卡片 + 调色板，复制为起点）。
+- **配套交互套件**：`references/toastmasters-tabletopics-kit.md`，含可直接复用的：
+  - 编号选题板（localStorage 已选持久化 + 二次确认重置 + 跳转）
+  - 难度切换（Easy / Medium / Hard 按钮高亮 + 面板切换）
+  - 返回选题板 back-link + 页序映射
+  - QUESTIONS 数据模型 `{n,q,img,easy,vocab≤5,patterns}`
+  - 双语主持稿四段模板（开场 / 规则 / 串场 / 结尾）
+  - 主题色令牌章节 + 6 类真实踩坑
+
+> 做头马 / 品牌类 PPT：复制 `toastmasters-theme.html` 作起点，套用 §7 令牌，交互层直接搬 kit 里的组件即可，无需从零搭。
 
 ---
 
