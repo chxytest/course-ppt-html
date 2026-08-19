@@ -191,9 +191,10 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 本 skill 在 **阶段3 / 阶段4** 推荐直接调用下面两个核心技能（G0 前置检查确认就绪）：
 
 - `guizang-ppt-skill`：单文件 HTML 网页 PPT 视觉系统。安装：`npx skills add op7418/guizang-ppt-skill --skill guizang-ppt-skill`。**用于阶段3** 产出 HTML 视觉底座。
-  - **内置 2 套风格**：
+  - **内置 3 套风格**：
     - 风格 A · 电子杂志 × 电子墨水（默认）：衬线大标题 + 流体背景；**内置 5 套主题色预设（只能选、不能自定义 hex）**：① 墨水经典（默认）② 靛蓝瓷（科技/数据）③ 森林墨（自然/文化）④ 牛皮纸（怀旧/人文）⑤ 沙丘（艺术/设计）；10 种现成布局骨架。
     - 风格 B · 瑞士国际主义：全程无衬线 + 极致字号对比；**内置 4 套高反差功能色（四选一）**：克莱因蓝 IKB / 柠檬黄 / 柠檬绿 / 安全橙；**22 个登记版式（S01–S22）**。
+    - 风格 C · 头马 Toastmasters 品牌风（本次新增）：基于 Swiss 底座 + 头马品牌色令牌；主色 Loyal Blue `#004165` / True Maroon `#772432` / Happy Yellow `#F2DF74` + 渐变端点（Blissful Blue `#006094`、Deep Maroon `#3B0104`、Rich Maroon `#781327`、Fair Gray `#F5F5F5`）；参数为 `--tier-bg/--tier-fg/--tier-meta` 的分级卡片，换场景可改色不改结构。完整模板见 `assets/toastmasters-theme.html`，配套交互套件见 `references/toastmasters-tabletopics-kit.md`。
   - 🔗 原仓库（完整风格 / 版式 / 主题色 / 自检清单）：https://github.com/op7418/guizang-ppt-skill
 - `ian-xiaohei-illustrations`：个人 IP 角色配图风格 DNA + 提示词模板。安装：`npx skills add helloianneo/ian-xiaohei-illustrations --skill ian-xiaohei-illustrations`。**用于阶段4** 产出 IP 配图。
   - **内置风格 DNA**：默认视觉 IP「汉堡 IP」（戴方框黑框眼镜、穿浅灰休闲西装的温和认真男人，3D 转 2D 手办质感）；16:9 横版中文配图、浅灰/米白洁净背景 + 大量留白、圆润立体干净描边平涂、少量红/橙/蓝中文批注；铁律：IP 必须参与核心动作、禁止 PPT 感/幼稚可爱/左上角标题。
@@ -207,11 +208,13 @@ G0 前置沟通（资料齐备）──► 阶段1 框架梳理 ──G1──�
 ## 复用资产索引（全部在本仓库内）
 
 - `assets/template.html`：阶段3 单文件 HTML deck 起点。
+- `assets/toastmasters-theme.html`：头马 Toastmasters 品牌风完整模板（风格 C），含品牌色令牌 + 参数化分级卡片，做头马/品牌类现场互动 PPT 直接复制填充。
 - `references/html-deck-spec.md`：deck 规格（CSS 变量 / 翻页 / syncVideos / 容器写法）。
 - `references/ip-illustration.md`：阶段4 IP 配图提示词模板 + 多工具替代。
 - `references/sample-prompts.md`：阶段2/3/4/5 真实用户样例提示词参考（按需展示给用户调优，不写死）。
 - `references/dependencies.md`：两个核心依赖技能的作用、使用阶段、G0 前置检查与降级路径。
 - `references/confirmation-sop.md`：G0–G5 确认门 + 资料清单。
+- `references/toastmasters-tabletopics-kit.md`：头马即兴演讲题库 PPT 复用交互套件（选题板 / 难度切换 / 数据模型 / 主持稿 / 主题色令牌 / 踩坑）。
 - `references/pitfalls.md`：5 类真实踩坑与预防。
 
 
